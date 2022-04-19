@@ -1,0 +1,36 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+  // aucun probleme visuel
+  font-size: 1.3rem;
+  font-size: clamp(10px,1.6rem,20px);
+  padding: 8px 16px;
+  padding: 8px clamp(5px,0.7vw,16px);
+}
+
+a:hover {
+
+  background-color: #865fc5;
+}
+
+.navigation-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+mat-toolbar {
+  border-radius: 3px;
+}
+
+@media (max-width: 959px) {
+  mat-toolbar {
+    border-radius: 0;
+  }
+}

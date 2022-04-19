@@ -1,0 +1,5 @@
+<div class="surveys">
+  <app-survey class="survey" *ngFor="let item of surveys$ | async"
+                 [survey]="item"></app-survey>
+</div>
+

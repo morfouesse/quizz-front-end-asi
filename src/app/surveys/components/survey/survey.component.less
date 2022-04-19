@@ -1,0 +1,19 @@
+@primary: #673ab7;
+.card {
+  max-width: 400px;
+  background-color: @primary;
+
+  mat-expansion-panel{
+    background-color: @primary;
+  }
+
+  .text-white{
+    color: white;
+  }
+}
+
+// pour changer un icon angular utilisé dans une balise angular
+// https://tomaszs2.medium.com/there-is-no-alternative-to-ng-deep-620496f1c8c9
+::ng-deep .specific-class > .mat-expansion-indicator:after {
+  color: white;
+}
