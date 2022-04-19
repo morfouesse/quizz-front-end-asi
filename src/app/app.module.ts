@@ -7,7 +7,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from "./core/core.module";
 import {SurveysModule} from "./surveys/surveys.module";
 
-
 @NgModule({
   declarations: [
     AppComponent,
