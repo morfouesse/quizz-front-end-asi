@@ -5,6 +5,7 @@ import {SurveysComponent} from "./components/surveys/surveys.component";
 import {SurveyComponent} from "./components/survey/survey.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {SurveysRoutingModule} from "./surveys-routing.module";
 
 
 
@@ -17,7 +18,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
     CommonModule,
     HttpClientModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SurveysRoutingModule,
   ],
   exports : [
     SurveysComponent,

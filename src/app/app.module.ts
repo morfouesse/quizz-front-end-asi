@@ -4,7 +4,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from "./core/core.module";
-import {SurveysModule} from "./surveys/surveys.module";
+import {HttpClientModule} from '@angular/common/http';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 @NgModule({
@@ -13,10 +14,12 @@ import {SurveysModule} from "./surveys/surveys.module";
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule,
-    SurveysModule
+    HttpClientModule,
+    MatProgressBarModule,
+
   ],
   providers: [],
   exports: [],

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
