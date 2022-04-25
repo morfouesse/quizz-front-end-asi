@@ -10,11 +10,11 @@ import {ISurvey} from "../../../models/i-survey";
 })
 export class SurveyComponent implements OnInit {
 
-  @Input() survey!: ISurvey;
+  @Input() public survey!: ISurvey;
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

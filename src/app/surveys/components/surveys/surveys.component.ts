@@ -12,14 +12,13 @@ import {ISurvey} from "../../../models/i-survey";
 
 export class SurveysComponent implements OnInit {
 
-  surveys$: Observable<ISurvey[]> = new Observable<ISurvey[]>();
+  public surveys$: Observable<ISurvey[]> = new Observable<ISurvey[]>();
 
-  constructor(private surveyHttpClient: SurveyHttpClientService) {
+  public constructor(private surveyHttpClient: SurveyHttpClientService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.surveys$ = this.surveyHttpClient.getSurveys();
-    this.surveys$.subscribe((sucess) => sucess.forEach((survey) => console.log(survey)));
   }
 
 }
