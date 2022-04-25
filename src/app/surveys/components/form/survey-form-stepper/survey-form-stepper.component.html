@@ -1,0 +1,15 @@
+<form [formGroup]="surveyForm">
+  <mat-stepper orientation="vertical">
+    <!-- component step pour survey -->
+    <mat-step [stepControl]="surveyForm">
+      <ng-template matStepLabel>Choisis le nom de ton questionnaire !</ng-template>
+      <app-survey-form-step-survey [surveyForm]="surveyForm"></app-survey-form-step-survey>
+    </mat-step>
+    <!-- component step pour questions-->
+    <mat-step [stepControl]="surveyForm">
+      <ng-template matStepLabel>Crée tes questions !</ng-template>
+      <app-survey-form-step-questions [surveyForm]="surveyForm"></app-survey-form-step-questions>
+    </mat-step>
+  </mat-stepper>
+  <!-- component step pour réponses-->
+</form>

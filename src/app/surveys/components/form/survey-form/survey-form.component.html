@@ -1,0 +1,97 @@
+<form [formGroup]="surveyForm">
+  <mat-stepper orientation="vertical">
+    <mat-step [stepControl]="surveyForm">
+      <ng-template matStepLabel>Choisis le nom de ton questionnaire !</ng-template>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Titre</mat-label>
+          <input formControlName="title" matInput placeholder="Ex. super questionnaire !"
+                 (ngModelChange)="inputChangeOnStepper($event)">
+          <mat-error *ngIf="formSurvey?.get('title')?.invalid">Il faut plus de 4 caractères</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea formControlName="description" matInput placeholder="Ex. super description !"
+                    (ngModelChange)="inputChangeOnStepper($event)"></textarea>
+          <mat-error *ngIf="formSurvey?.get('description')?.invalid">Il faut plus de 4 caractères</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <button [disabled]="isEnable()" mat-raised-button color="primary" type="button" matStepperNext>
+          Suivant
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="surveyForm">
+      <ng-template matStepLabel>Crée tes questions !</ng-template>
+      <div formArrayName="questions">
+        <div formGroupName="0" class="form-group" *ngFor="let question of questions.controls; index as i">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>titre de la question</mat-label>
+            <input formControlName="title" matInput (ngModelChange)="inputChangeOnStepper($event)" [(ngModel)]="questionTitleInput">
+            <mat-error *ngIf="formSurvey?.get('questions')?.get([0])?.get('title')?.invalid">Il faut plus de 4
+              caractères
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <button (click)="addQuestion()" mat-raised-button>+ Ajouter une question</button>
+        </div>
+        <div class="form-group">
+          <button class="spacer" mat-raised-button color="primary" type="button" matStepperPrevious>Retour</button>
+          <button [disabled]="isEnableQuestion()" mat-raised-button color="primary"
+                  type="button" matStepperNext>Suivant
+          </button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="surveyForm">
+      <ng-template matStepLabel>Crée tes réponses !</ng-template>
+      <div formArrayName="questions">
+        <div formGroupName="0">
+
+      <div formArrayName="answers">
+        <div formGroupName="0" class="form-group" *ngFor="let answer of answers.controls; index as i">
+          <mat-form-field appearance="fill">
+            <mat-label>choisis la question</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let question of inputQuestions" [value]="question.title">
+                {{question.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>titre de la réponse</mat-label>
+            <input formControlName="name" matInput (ngModelChange)="inputChangeOnStepper($event)">
+            <mat-error *ngIf="formSurvey?.get('questions')?.get([0])?.get('answers')?.get([0])?.get('name')?.invalid">Il faut plus de 4
+              caractères
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <button (click)="addAnswer()" mat-raised-button>+ Ajouter une réponse</button>
+        </div>
+        <div class="form-group">
+          <button class="spacer" mat-raised-button color="primary" type="button" matStepperPrevious>Retour</button>
+          <button [disabled]="isEnableAnswer()" mat-raised-button color="primary"
+                  type="button" matStepperNext>Suivant
+          </button>
+        </div>
+      </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Valide le questionnaire !</ng-template>
+      <div class="action-button">
+        <button class="spacer" color="primary" mat-raised-button type="button" matStepperPrevious>Back</button>
+        <button type="submit" color="primary" [disabled]="surveyForm.invalid"
+                (click)="onSubmitForm()" mat-raised-button>Enregistrer
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</form>
+<app-survey-form-stepper></app-survey-form-stepper>

@@ -7,10 +7,11 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <!-- https://tburleson-layouts-demos.firebaseapp.com/#/responsive -->
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.lt-md>
+    <!-- plus propre avec breakpoint
+     https://embed.plnkr.co/2IWMsmL3KjKm6owFA3Dj/ -->
+    <div fxFlex="grow" fxLayout="row" fxLayoutAlign="end" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-        <li>
+        <li><!-- pipe translate == mieux -->
           <a routerLink="">Accueil</a>
         </li>
         <li>

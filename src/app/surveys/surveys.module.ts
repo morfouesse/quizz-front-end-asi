@@ -16,6 +16,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { SurveyFormStepperComponent } from './components/form/survey-form-stepper/survey-form-stepper.component';
 import { SurveyFormStepSurveyComponent } from './components/form/survey-form-step-survey/survey-form-step-survey.component';
+import { SurveyFormStepQuestionsComponent } from './components/form/survey-form-step-questions/survey-form-step-questions.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SurveyFormStepSurveyComponent } from './components/form/survey-form-ste
     SurveyFormComponent,
     SurveyFormStepperComponent,
     SurveyFormStepSurveyComponent,
+    SurveyFormStepQuestionsComponent,
   ],
   imports: [
     CommonModule,
@@ -41,8 +43,6 @@ import { SurveyFormStepSurveyComponent } from './components/form/survey-form-ste
     MatSelectModule,
   ],
   exports: [
-    SurveysComponent,
-    SurveyComponent
   ]
 })
 export class SurveysModule {
