@@ -2,18 +2,22 @@
   <mat-toolbar-row>
     <span>Quizz</span>
     <span class="spacer"></span>
-    <div fxHide.gt-xs>
-      <button mat-icon-button class="example-icon" aria-label="icone de menu" (click)="onToggleSidenav()">
+    <div fxHide.gt-sm>
+      <button mat-icon-button aria-label="icone de menu" (click)="onToggleSidenav()">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <!-- https://tburleson-layouts-demos.firebaseapp.com/#/responsive -->
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.lt-md>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
         <li>
           <a routerLink="">Accueil</a>
         </li>
         <li>
           <a routerLink="surveys">Les questionnaires !</a>
+        </li>
+        <li>
+          <a routerLink="surveys/create">Crée ton questionnaire !</a>
         </li>
       </ul>
     </div>
