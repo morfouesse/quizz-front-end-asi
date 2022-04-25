@@ -1,18 +1,48 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ISurveyHttpClient} from "./i-survey-http-client";
-import {Observable, take} from "rxjs";
+import {map, Observable, OperatorFunction, switchMap, take} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ISurvey} from "../../models/i-survey";
+import {SURVEY, SURVEYS, URL_LOCAL} from "../../shared/constants/api";
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SurveyHttpClientService implements ISurveyHttpClient{
+export class SurveyHttpClientService implements ISurveyHttpClient {
 
-  constructor(private httpClient: HttpClient) { }
-
-
-  getSurveys(url: string): Observable<ISurvey[]> {
-    return this.httpClient.get<ISurvey[]>(url).pipe(take(1));
+  constructor(private httpClient: HttpClient) {
   }
+
+
+  getSurveys(): Observable<ISurvey[]> {
+    return this.httpClient.get<ISurvey[]>(URL_LOCAL + SURVEYS).pipe(take(1));
+  }
+
+  postSurvey(): OperatorFunction<ISurvey, ISurvey> {
+    return switchMap((newSurvey: ISurvey) => this.httpClient.post<ISurvey>(URL_LOCAL + SURVEY, newSurvey).pipe(take(1)));
+  }
+
+  addSurveyWithTheseQuestionsAndAnswers(form: FormGroup): Observable<ISurvey> {
+    return this.getSurveys().pipe(
+      this.surveyAscending(),
+      this.getLastSurvey(),
+      this.addSurveyWithDataForm(form),
+      this.postSurvey(),
+    );
+  }
+
+  surveyAscending(): OperatorFunction<ISurvey[], ISurvey[]> {
+    return map((survey: ISurvey[])=> [... survey].sort());
+  }
+
+   getLastSurvey() : OperatorFunction<ISurvey[], ISurvey> {
+    return map((surveys: ISurvey[]) => surveys[surveys.length - 1]);
+  }
+  addSurveyWithDataForm(form: FormGroup): OperatorFunction<ISurvey, ISurvey>{
+    return map(() => ({
+      ...form.value
+    }));
+  }
+
 }

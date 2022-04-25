@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {SurveyHttpClientService} from "../../services/survey-http-client.service";
 import {Observable} from "rxjs";
 import {ISurvey} from "../../../models/i-survey";
-import {SURVEYS, URL_LOCAL} from "../../../shared/constants/api";
 
 @Component({
   selector: 'app-surveys',
@@ -19,8 +18,8 @@ export class SurveysComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.surveys$ = this.surveyHttpClient.getSurveys(URL_LOCAL + SURVEYS);
-   this.surveys$.subscribe((sucess) => sucess.forEach((survey) => console.log(survey)));
+    this.surveys$ = this.surveyHttpClient.getSurveys();
+    this.surveys$.subscribe((sucess) => sucess.forEach((survey) => console.log(survey)));
   }
 
 }

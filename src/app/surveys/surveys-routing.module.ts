@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SurveysComponent} from "./components/surveys/surveys.component";
-import {SurveyComponent} from "./components/survey/survey.component";
+import {SurveyFormComponent} from "./components/form/survey-form/survey-form.component";
 
 const routes: Routes = [
- // {path: ':id', component: SurveyComponent},
+  // {path: ':id', component: SurveyComponent},
+  {path: 'create', component: SurveyFormComponent},
   {path: '', component: SurveysComponent},
 ];
 

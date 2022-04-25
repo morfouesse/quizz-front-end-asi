@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from "./core/core.module";
 import {HttpClientModule} from '@angular/common/http';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {HomeModule} from "./home/home.module";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HomeModule,
     HttpClientModule,
     MatProgressBarModule,
 
