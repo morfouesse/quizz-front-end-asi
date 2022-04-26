@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-survey-form-step-questions',
@@ -9,11 +9,13 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 export class SurveyFormStepQuestionsComponent implements OnInit {
 
   @Input() public surveyForm!: FormGroup;
+  public index: number = 0;
 
   public constructor(private formBuilder: FormBuilder) { }
 
   public ngOnInit(): void {
   }
+
 
   isNotEnableQuestion() {
     // console.log(this.surveyForm);
@@ -24,7 +26,28 @@ export class SurveyFormStepQuestionsComponent implements OnInit {
     return this.surveyForm?.get('questions') as FormArray;
   }
 
+
+
   addQuestion(): void {
-    this.questions.push(this.formBuilder.control(''));
+    this.questions.push(this.formBuilder.group({
+        title: ['', [
+          Validators.required,
+          Validators.minLength(5),
+        ]],
+        answers: this.formBuilder.array([
+          this.formBuilder.group({
+            name: ['', [
+              Validators.required,
+              Validators.minLength(5),
+            ]],
+            goodAnswer: [false, [
+            ]],
+          })
+        ])
+  }));
   }
+
+
+
+
 }
