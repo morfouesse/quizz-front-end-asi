@@ -20,6 +20,8 @@ import {tap} from "rxjs";
 export class SurveyFormStepperComponent implements OnInit {
 
   surveyForm!: FormGroup;
+//TODO: custom validation à faire
+  private nameRe: RegExp = new RegExp("/bob/i");
 
   constructor(private formBuilder: FormBuilder, private surveyHttpClientService: SurveyHttpClientService, private router: Router) {
   }
@@ -79,11 +81,6 @@ export class SurveyFormStepperComponent implements OnInit {
     //return this.formArray?.get([1])?.get('questions') as FormArray;
   }
 
-  addAnswer(): void {
-    this.answers.push(this.formBuilder.control(''));
-  }
-
-
   get formSurvey(): AbstractControl | null {
     return this.surveyForm;
   }
@@ -100,40 +97,5 @@ export class SurveyFormStepperComponent implements OnInit {
       tap(() => this.router.navigateByUrl('/surveys'))
     ).subscribe();
   }
-/*
-  inputChangeOnStepper(data: string) {
-    if (data == null || data == '') {
-      this.disabled = true;
-    } else {
-      this.disabled = false;
-    }
-  }*/
 
-
-  isEnableQuestion() {
-    // console.log(this.surveyForm);
-    if (this.formSurvey?.get('questions')?.get([0])?.get('title')?.valid) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-  isEnableAnswer(){
-    if(this.formSurvey?.get('questions')?.get([0])?.get('answers')?.get([0])?.get('name')?.valid){
-      return false;
-    } else {
-      return true;
-    }
-  }
-/*
-  inputQuestionTitle() {
-    console.log(this.questionTitleInput);
-    let id = 1;
-    let currentQuestion = {
-      id: id,
-      title: this.questionTitleInput!,
-    }
-    id++;
-    this.inputQuestions.push(currentQuestion);
-  }*/
 }
