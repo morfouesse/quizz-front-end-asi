@@ -1,18 +1,24 @@
 <div [formGroup]="surveyForm">
   <div formArrayName="questions">
-    <div formGroupName="{{ index }}" class="form-group">
+    <div formGroupName="{{ index }}">
       <div formArrayName="answers">
         <button (click)="addAnswer()" mat-raised-button>+ Ajouter une réponse</button>
+        <div class="answers">
         <div formGroupName="{{ iAnswer }}" class="form-group" *ngFor="let answer of answers.controls; index as iAnswer">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>titre de la réponse n°{{ iAnswer }}</mat-label>
+          <mat-form-field  appearance="outline">
+            <mat-label>titre de la réponse n°{{ iAnswer + 1}}</mat-label>
             <input formControlName="name" matInput>
-            <mat-error *ngIf="surveyForm?.get('questions')?.get([0])?.get('answers')?.get([0])?.get('name')?.invalid">Il
+            <mat-error *ngIf="surveyForm?.get('questions')!.get([index])!.get('answers')!.get([iAnswer])!.get('name')!.invalid">Il
               faut plus de 4
               caractères
             </mat-error>
+            <mat-error *ngIf="surveyForm!.get('questions')!.get([index])!.get('answers')!
+            .get([iAnswer])!.get('name')!.hasError('whiteSpace')">
+              Pourquoi vous mettez des espaces ? 🤔
+            </mat-error>
           </mat-form-field>
         </div>
+      </div>
       </div>
     </div>
   </div>

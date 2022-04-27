@@ -1,6 +1,7 @@
 <form [formGroup]="surveyForm">
   <mat-stepper orientation="vertical">
     <!-- component step pour survey -->
+    <!-- todo: utiliser que les info du survey -->
     <mat-step [stepControl]="surveyForm">
       <ng-template matStepLabel>Choisis le nom de ton questionnaire !</ng-template>
       <app-survey-form-step-survey [surveyForm]="surveyForm"></app-survey-form-step-survey>
@@ -12,3 +13,4 @@
     </mat-step>
   </mat-stepper>
 </form>
+
