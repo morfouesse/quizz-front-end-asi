@@ -1,24 +1,30 @@
 <div [formGroup]="surveyForm">
   <div formArrayName="questions">
-    <div formGroupName="{{ i }}" class="form-group" *ngFor="let question of questions.controls; index as i">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>titre de la question n°{{ i + 1}}</mat-label>
-        <input formControlName="title" matInput>
-        <mat-error *ngIf="surveyForm?.get('questions')?.get([i])?.get('title')?.invalid">Il faut plus de 4
-          caractères
-        </mat-error>
-      </mat-form-field>
-      <!-- component step pour réponses-->
-      <app-survey-form-step-questions-answers [index]="i" [questions]="questions"
-                                              [surveyForm]="surveyForm"></app-survey-form-step-questions-answers>
+    <div class="form-group" formGroupName="{{ i }}"
+         *ngFor="let question of questions.controls; index as i">
+      <div class="new-question">
+        <mat-form-field appearance="outline">
+          <mat-label>titre de la question n°{{ i + 1}}</mat-label>
+          <input formControlName="title" matInput>
+          <mat-error *ngIf="surveyForm!.get('questions')!.get([i])!.get('title')!.invalid">Il faut plus de 4
+            caractères
+          </mat-error>
+          <mat-error *ngIf="surveyForm!.get('questions')!.get([i])!.get('title')!.hasError('whiteSpace')">
+            Pourquoi vous mettez des espaces ? 🤔
+          </mat-error>
+        </mat-form-field>
+        <!-- component step pour réponses-->
+        <app-survey-form-step-questions-answers [index]="i" [questions]="questions"
+                                                [surveyForm]="surveyForm"></app-survey-form-step-questions-answers>
+      </div>
     </div>
     <div class="form-group">
       <button (click)="addQuestion()" mat-raised-button>+ Ajouter une question</button>
     </div>
     <div class="form-group">
       <button class="spacer" mat-raised-button color="primary" type="button" matStepperPrevious>Retour</button>
-      <button [disabled]="isNotEnableQuestion()" mat-raised-button color="primary"
-              type="button" matStepperNext>Suivant
+      <button [disabled]="isNotEnableSurveyAndQuestionsAndAnswers()" mat-raised-button color="primary"
+              (click)="onSubmitForm()" type="submit" matStepperNext>Valider le formulaire !
       </button>
     </div>
   </div>
