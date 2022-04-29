@@ -13,10 +13,18 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-import { SurveyFormStepperComponent } from './components/form/survey-form-stepper/survey-form-stepper.component';
-import { SurveyFormStepSurveyComponent } from './components/form/survey-form-step-survey/survey-form-step-survey.component';
-import { SurveyFormStepQuestionsComponent } from './components/form/survey-form-step-questions/survey-form-step-questions.component';
-import { SurveyFormStepQuestionsAnswersComponent } from './components/form/survey-form-step-questions-answers/survey-form-step-questions-answers.component';
+import {SurveyFormStepperComponent} from './components/form/survey-form-stepper/survey-form-stepper.component';
+import {
+  SurveyFormStepSurveyComponent
+} from './components/form/survey-form-step-survey/survey-form-step-survey.component';
+import {
+  SurveyFormStepQuestionsComponent
+} from './components/form/survey-form-step-questions/survey-form-step-questions.component';
+import {
+  SurveyFormStepQuestionsAnswersComponent
+} from './components/form/survey-form-step-questions-answers/survey-form-step-questions-answers.component';
+import {MatRadioModule} from "@angular/material/radio";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -41,9 +49,10 @@ import { SurveyFormStepQuestionsAnswersComponent } from './components/form/surve
     MatStepperModule,
     MatOptionModule,
     MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule,
   ],
-  exports: [
-  ]
+  exports: [],
 })
 export class SurveysModule {
 }

@@ -19,6 +19,11 @@ export class SurveyHttpClientService implements ISurveyHttpClient {
     return this.httpClient.get<ISurvey[]>(URL_LOCAL + SURVEYS).pipe(take(1));
   }
 
+
+  public getErrorMessage(): Observable<string> {
+    return this.httpClient.get<string>(URL_LOCAL + SURVEY).pipe(take(1));
+  }
+
   private postSurvey(): OperatorFunction<ISurvey, ISurvey> {
     return switchMap((newSurvey: ISurvey) => this.httpClient.post<ISurvey>(URL_LOCAL + SURVEY, newSurvey).pipe(take(1)));
   }
@@ -45,5 +50,6 @@ export class SurveyHttpClientService implements ISurveyHttpClient {
       ...form.value
     }));
   }
+
 
 }

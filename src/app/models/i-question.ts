@@ -4,6 +4,6 @@ import {ISurvey} from "./i-survey";
 export interface IQuestion {
   id: number;
   title: string;
-  survey?: ISurvey;
-  answers?: IAnswer[];
+  survey: ISurvey;
+  answers: IAnswer[];
 }

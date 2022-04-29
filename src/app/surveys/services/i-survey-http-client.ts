@@ -5,4 +5,5 @@ import {FormGroup} from "@angular/forms";
 export interface ISurveyHttpClient {
   getSurveys(url: string): Observable<ISurvey[]>;
   addSurveyWithTheseQuestionsAndAnswers(form: FormGroup): Observable<ISurvey>;
+  getErrorMessage(): Observable<string>;
 }

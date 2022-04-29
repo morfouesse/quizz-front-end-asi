@@ -26,32 +26,18 @@ export class SurveyFormStepperComponent implements OnInit {
       title: ['', [
         Validators.required,
         Validators.minLength(5),
-        this.customValidatorsService.noWhiteSpaceValidator()
+        this.customValidatorsService.noSpaceValidation.bind(this),
+       // this.customValidatorsService.getErrorMessage(),
       ]],
       description: ['', [
         Validators.required,
         Validators.minLength(5),
-        this.customValidatorsService.noWhiteSpaceValidator()
+        this.customValidatorsService.noSpaceValidation.bind(this),
       ]],
       questions: this.formBuilder.array([
-        this.formBuilder.group({
-          title: ['', [
-            Validators.required,
-            Validators.minLength(5),
-            this.customValidatorsService.noWhiteSpaceValidator()
-          ]],
-          answers: this.formBuilder.array([
-            this.formBuilder.group({
-              name: ['', [
-                Validators.required,
-                Validators.minLength(2),
-                this.customValidatorsService.noWhiteSpaceValidator()
-              ]],
-              goodAnswer: [false, []],
-            })
-          ])
-        })
-      ])
+       ])
     })
   }
+
+
 }

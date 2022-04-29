@@ -4,5 +4,5 @@ export interface IAnswer {
   id: string;
   name: string;
   goodAnswer: boolean;
-  question?: IQuestion;
+  question: IQuestion;
 }
