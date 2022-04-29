@@ -20,20 +20,29 @@ export class SurveyFormStepQuestionsAnswersComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  addAnswer(): void {
+  public addAnswer(): void {
     this.answers.push(this.formBuilder.group({
         name: ['', [
           Validators.required,
           Validators.minLength(2),
-          this.customValidatorsService.noWhiteSpaceValidator()
+          this.customValidatorsService.noSpaceValidation.bind(this),
         ]],
         goodAnswer: [false, []],
       }
     ));
   }
 
-
   get answers(): FormArray {
-    return this.surveyForm.get('questions')?.get([this.index])?.get('answers') as FormArray;
+    return this.surveyForm.get('questions')!.get([this.index])!.get('answers') as FormArray;
   }
+
+
+  public answersNameTrimValidation(i: number): string {
+    let questions = this.surveyForm.controls['questions'] as FormArray;
+    let questionFormGroup = questions.at(this.index) as FormGroup;
+    let answers = questionFormGroup.controls['answers'] as FormArray;
+    let answerFormGroup = answers.at(i) as FormGroup;
+    return answerFormGroup.controls['name'].errors?.['trimError']?.value;
+  }
+
 }

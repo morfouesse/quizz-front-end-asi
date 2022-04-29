@@ -3,18 +3,16 @@
     <mat-form-field  appearance="fill">
       <mat-label>Titre</mat-label>
       <input formControlName="title" matInput placeholder="Ex. super questionnaire !">
-      <mat-error *ngIf="surveyForm!.get('title')!.invalid">Il faut plus de 4 caractères</mat-error>
-      <mat-error *ngIf="surveyForm!.get('title')!.hasError('whiteSpace')">
-        Pourquoi vous mettez des espaces ? 🤔 </mat-error>
+      <mat-error *ngIf="survey.controls['title']?.invalid">Il faut plus de 4 caractères</mat-error>
+      <mat-error>{{ survey.controls['title'].errors?.['trimError']?.value }}</mat-error>
     </mat-form-field>
   </div>
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
       <textarea formControlName="description" matInput placeholder="Ex. super description !"></textarea>
-      <mat-error *ngIf="surveyForm!.get('description')!.invalid">Il faut plus de 4 caractères</mat-error>
-      <mat-error *ngIf="surveyForm!.get('description')!.hasError('whiteSpace')">
-        Pourquoi vous mettez des espaces ? 🤔 </mat-error>
+      <mat-error *ngIf="survey.controls['description']?.invalid">Il faut plus de 4 caractères</mat-error>
+      <mat-error>{{ survey.controls['description'].errors?.['trimError']?.value }}</mat-error>
     </mat-form-field>
   </div>
   <div class="form-group">

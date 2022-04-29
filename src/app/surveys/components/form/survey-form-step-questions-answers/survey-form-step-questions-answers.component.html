@@ -8,15 +8,17 @@
           <mat-form-field  appearance="outline">
             <mat-label>titre de la réponse n°{{ iAnswer + 1}}</mat-label>
             <input formControlName="name" matInput>
-            <mat-error *ngIf="surveyForm?.get('questions')!.get([index])!.get('answers')!.get([iAnswer])!.get('name')!.invalid">Il
+            <mat-error *ngIf="surveyForm.get('questions')!.get([index])!.get('answers')!.get([iAnswer])!.get('name')!.invalid">Il
               faut plus de 4
               caractères
             </mat-error>
-            <mat-error *ngIf="surveyForm!.get('questions')!.get([index])!.get('answers')!
-            .get([iAnswer])!.get('name')!.hasError('whiteSpace')">
-              Pourquoi vous mettez des espaces ? 🤔
+            <mat-error>
+              {{ this.answersNameTrimValidation(iAnswer) }}
             </mat-error>
           </mat-form-field>
+          <mat-checkbox class="spacer" color="primary" formControlName="goodAnswer">
+            Bonne réponse
+          </mat-checkbox>
         </div>
       </div>
       </div>

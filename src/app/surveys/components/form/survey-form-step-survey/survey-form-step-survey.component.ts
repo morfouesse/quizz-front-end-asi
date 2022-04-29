@@ -19,5 +19,8 @@ export class SurveyFormStepSurveyComponent implements OnInit {
     return !(this.surveyForm?.get('title')?.valid &&
       this.surveyForm?.get('description')?.valid);
   }
+  get survey() {
+    return this.surveyForm;
+  }
 
 }

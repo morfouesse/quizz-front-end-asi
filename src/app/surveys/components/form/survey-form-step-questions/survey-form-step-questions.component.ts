@@ -23,6 +23,7 @@ export class SurveyFormStepQuestionsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+
   }
 
 
@@ -34,20 +35,25 @@ export class SurveyFormStepQuestionsComponent implements OnInit, OnDestroy {
     return this.surveyForm!.get('questions') as FormArray;
   }
 
+  questionsTitleTrimValidation(i: number): string {
+    let questions = this.surveyForm!.controls['questions'] as FormArray;
+    let questionFormGroup = questions.at(i) as FormGroup;
+    return questionFormGroup.controls['title'].errors?.['trimError']?.value;
+  }
 
   public addQuestion(): void {
     this.questions.push(this.formBuilder.group({
       title: ['', [
         Validators.required,
         Validators.minLength(5),
-        this.customValidatorsService.noWhiteSpaceValidator(),
+        this.customValidatorsService.noSpaceValidation.bind(this),
       ]],
       answers: this.formBuilder.array([
         this.formBuilder.group({
           name: ['', [
             Validators.required,
             Validators.minLength(2),
-            this.customValidatorsService.noWhiteSpaceValidator(),
+            this.customValidatorsService.noSpaceValidation.bind(this),
           ]],
           goodAnswer: [false, []],
         })

@@ -6,16 +6,20 @@
         <mat-form-field appearance="outline">
           <mat-label>titre de la question n°{{ i + 1}}</mat-label>
           <input formControlName="title" matInput>
-          <mat-error *ngIf="surveyForm!.get('questions')!.get([i])!.get('title')!.invalid">Il faut plus de 4
+          <mat-error *ngIf="surveyForm.get('questions')!.get([i])!.get('title')!.invalid">Il faut plus de 4
             caractères
           </mat-error>
-          <mat-error *ngIf="surveyForm!.get('questions')!.get([i])!.get('title')!.hasError('whiteSpace')">
-            Pourquoi vous mettez des espaces ? 🤔
+          <mat-error>
+            {{ this.questionsTitleTrimValidation(i) }}
           </mat-error>
         </mat-form-field>
         <!-- component step pour réponses-->
-        <app-survey-form-step-questions-answers [index]="i" [questions]="questions"
-                                                [surveyForm]="surveyForm"></app-survey-form-step-questions-answers>
+        <div class="form-group">
+          <app-survey-form-step-questions-answers [index]="i" [questions]="questions"
+                                                  [surveyForm]="surveyForm">
+
+          </app-survey-form-step-questions-answers>
+        </div>
       </div>
     </div>
     <div class="form-group">
